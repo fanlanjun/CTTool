@@ -32,6 +32,11 @@
     return self;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self openInteractivePopGestureRecognizer];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,6 +48,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+/**
+ * 解决自定义导航栏，手势失效问题
+ */
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    
+    [self openInteractivePopGestureRecognizer];
+    [super pushViewController:viewController animated:animated];
 }
 
 #pragma mark - Private methods
